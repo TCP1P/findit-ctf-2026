@@ -4,7 +4,7 @@ const CONFIG = {
     APPNAME: process.env['APPNAME'] || "Admin",
     APPURL: process.env['APPURL'] || "http://localhost:9000",
     APPURLREGEX: process.env['APPURLREGEX'] || "^http(s|)://.*$",
-    APPSECRET: process.env['APPSECRET'] || "secret-123",
+    APPSEED: process.env['APPSEED'] || "seed-123",
     APPLIMITTIME: Number(process.env['APPLIMITTIME'] || "60"),
     APPLIMIT: Number(process.env['APPLIMIT'] || "5"),
 }
@@ -99,10 +99,9 @@ module.exports = {
             ]);
             await sleep(500)
 
-            // add flag to note
             await page.goto(`${CONFIG.APPURL}`)
             const contentInput = await page.waitForSelector("textarea")
-            await contentInput.type(`${CONFIG.APPSECRET} <!--secret-->`)
+            await contentInput.type(`${CONFIG.APPSEED} <!--managed-->`)
             const noteSubmit = await page.waitForSelector("button")
             await noteSubmit.click()
             await sleep(500)

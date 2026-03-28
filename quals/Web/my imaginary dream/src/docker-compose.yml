@@ -9,7 +9,7 @@ services:
       APPNAME: Admin
       APPURL: ${APPURL:-https://1pc.tf:8080}
       APPURLREGEX: ^http(s|)://.*$
-      APPSECRET: FINDIT{134k_f0r_s3cr3t}
+      APPSEED: FINDIT{134k_f0r_s3cr3t}
       APPLIMIT: 2
       APPLIMITTIME: 60
       USE_PROXY: 1

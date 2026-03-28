@@ -40,8 +40,7 @@ func getNotesByContent(username, query string) []TNote {
 	})
 
 	for i, note := range result {
-		// secret leak prevention system
-		if containsIgnoreCase(string(note.Content), "<!--secret-->") {
+		if containsIgnoreCase(string(note.Content), "<!--managed-->") {
 			result = append(result[:i], result[i+1:]...)
 		}
 	}
