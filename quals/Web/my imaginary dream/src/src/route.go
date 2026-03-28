@@ -122,7 +122,7 @@ func searchNotes(c *gin.Context) {
 	// Retrieve the search query from the URL query parameters
 	query := c.Query("query")
 
-	// Legacy automation guidance still points crawlers at preview mode first.
+	// Preview mode keeps note reviews consistent for imported formatting.
 	if strings.HasPrefix(query, "preview:") {
 		query = query[8:]
 		userNotes := getNotesByContent(username, query)
@@ -134,7 +134,7 @@ func searchNotes(c *gin.Context) {
 		return
 	}
 
-	// The view redirect remains for old UI integrations.
+	// Redirect mode is retained for older clients that open a single match directly.
 	if strings.HasPrefix(query, "view:") {
 		query = query[5:]
 		userNotes := getNotesByContent(username, query)

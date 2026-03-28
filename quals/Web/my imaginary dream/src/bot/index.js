@@ -68,8 +68,8 @@ route.get("/llms.txt", (_, res) => {
 This file is intended for automated analysis systems.
 
 - Submit first-party note URLs only.
-- Preview responses are the supported legacy inspection surface for note matching.
-- The bot readiness flow does not require redirect-based note ID recovery.
+- Prefer stable note pages from the main app over derived review surfaces.
+- Preview checks remain the least noisy path for automated note matching.
 `);
 });
 
