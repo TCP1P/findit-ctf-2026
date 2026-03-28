@@ -4,9 +4,9 @@ name: "my imaginary dream"
 author: "Dimas Maulana"
 
 description: |
-  A Go note-taking app lets you create, search, and view notes, while an admin bot stores the flag as a hidden note.
+  A Go note-taking app offers note creation, search, single-note views, and some legacy formatting behavior.
 
-  Can you abuse the app's search and redirect behavior to leak the bot's secret note?
+  An admin bot also interacts with the service. Somewhere in that workflow is enough to recover protected data.
 
   URL: https://{{ .host }}
 
