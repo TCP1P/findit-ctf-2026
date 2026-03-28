@@ -1,0 +1,33 @@
+services:
+  solve:
+    build:
+      context: .
+      dockerfile: Dockerfile.solve
+    restart: unless-stopped
+    entrypoint: ["python", "/app/solve.py"]
+    command:
+      - "--http"
+      - "--bind-host"
+      - "0.0.0.0"
+      - "--port"
+      - "4444"
+      - "--target-url"
+      - ${TARGET_URL:-https://1pc.tf:8080}
+      - "--public-url"
+      - ${PUBLIC_URL:-https://solve.1pc.tf/}
+      - "--report-url"
+      - ${REPORT_URL:-https://1pc.tf:8080/report/}
+      - --submit
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.my_imaginary_dream_solver.rule=Host(`solve.1pc.tf`)"
+      - "traefik.http.routers.my_imaginary_dream_solver.entrypoints=websecure"
+      - "traefik.http.routers.my_imaginary_dream_solver.tls=true"
+      - "traefik.http.routers.my_imaginary_dream_solver.tls.certresolver=letsencrypt"
+      - "traefik.http.services.my_imaginary_dream_solver.loadbalancer.server.port=4444"
+
+networks:
+  traefik:
+    external: true

@@ -23,6 +23,8 @@ description: Use this skill when creating, reviewing, or updating a gzcli CTF ev
 - `challenge.yml` must remain the canonical challenge definition filename.
 - Do not leave `challenge.yml` identical to a stock template.
 - If `provide: ./dist` is set, `dist/` must contain real files.
+- Treat `dist/` as player-visible. Do not ship real flags, real secrets, or deploy-time credentials inside files copied into `dist/`.
+- If the working tree keeps a real flag in maintainer-only files such as `challenge.yml` or local deployment config, sanitize the packaged `dist/` copy with a placeholder such as `fake{flag}` and inject the real value only at deploy time.
 - `solver/` must contain meaningful intended-solution material.
 - Treat `solver/` and writeup content as documentation, not deployment inputs.
 

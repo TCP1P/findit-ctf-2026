@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {{ template "theme-css" . }}
+</head>
+<body>
+    <main class="auth-shell">
+        <div class="login-bg-video" aria-hidden="true">
+            <iframe
+                id="login-bg-video-frame"
+                width="560"
+                height="315"
+                src="about:blank"
+                data-player-src="https://www.youtube.com/embed/hKU14_TA1N0?si=NI6dT4RVC1WPs-rE&loop=1&playlist=hKU14_TA1N0&enablejsapi=1&controls=0&modestbranding=1&rel=0&playsinline=1"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <div id="media-permission-overlay" class="permission-overlay">
+            <section class="panel permission-card">
+                <p class="kicker">Media Permission</p>
+                <h1 class="page-title">Enable audio before login</h1>
+                <p class="lede">Start playback with one click, then continue to sign in.</p>
+                <p id="media-permission-status" class="field-hint">Background playback is currently muted.</p>
+                <div class="button-row">
+                    <button id="bg-audio-toggle" class="ghost-button" type="button">Enable background audio</button>
+                </div>
+            </section>
+        </div>
+
+        <section class="panel auth-card">
+            {{ template "theme-brand" . }}
+            <p class="kicker">Login</p>
+            <h1 class="page-title">Sign in to your account.</h1>
+            <p class="lede">Enter your username and password to access your notes.</p>
+            <form class="stack" action="/login" method="post">
+                <div class="field">
+                    <label for="username">Username</label>
+                    <input class="text-input" type="text" id="username" name="username" autocomplete="username" required>
+                </div>
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input class="text-input" type="password" id="password" name="password" autocomplete="current-password" required>
+                </div>
+                    {{ if .Error }}
+                <p class="alert-card" role="alert">{{ .Error }}</p>
+                {{ end }}
+                <button id="login-submit" class="primary-button" type="submit" disabled>Log In</button>
+                <div class="button-row">
+                    <a class="ghost-button" href="/register">Create Account</a>
+                </div>
+            </form>
+        </section>
+    </main>
+    <script src="/assets/login.js" defer></script>
+</body>
+</html>

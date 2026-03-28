@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note App</title>
+    {{ template "theme-css" . }}
+</head>
+<body>
+    <main class="page-shell">
+        <div class="hero-grid">
+            <section class="panel panel-pad hero-poster">
+                {{ template "theme-brand" . }}
+                <div class="console-strip" aria-label="Feature tags">
+                    <span class="strip-chip">Create notes</span>
+                    <span class="strip-chip">Search records</span>
+                    <span class="strip-chip">Manage entries</span>
+                </div>
+                <div>
+                    <p class="kicker">Overview</p>
+                    <h1 class="page-title">Keep your notes organized.</h1>
+                    <p class="lede">Write new notes, review saved content, and search through your entries with a simple, familiar layout.</p>
+                </div>
+                <div class="link-grid" aria-label="Primary navigation">
+                    <a class="ghost-button" href="/notes">View Notes</a>
+                    <a class="ghost-button" href="/logout">Logout</a>
+                </div>
+            </section>
+
+            <aside class="panel panel-pad">
+                <p class="stat-label">Quick Tips</p>
+                <p class="quote-chip">Everything is back to a normal UI.</p>
+                <div class="trend-list">
+                    <article class="trend-item">
+                        <span class="trend-code">01</span>
+                        <div>
+                            <strong>Create notes</strong>
+                            <p>Use the form below to save a new note quickly.</p>
+                        </div>
+                    </article>
+                    <article class="trend-item">
+                        <span class="trend-code">02</span>
+                        <div>
+                            <strong>Search later</strong>
+                            <p>Open the notes page to search and filter your existing entries.</p>
+                        </div>
+                    </article>
+                    <article class="trend-item">
+                        <span class="trend-code">03</span>
+                        <div>
+                            <strong>Review details</strong>
+                            <p>Each saved note can be opened individually from the notes list.</p>
+                        </div>
+                    </article>
+                </div>
+                <div class="info-stack">
+                    <div class="info-row">
+                        <span>Layout</span>
+                        <strong>Clean and simple</strong>
+                    </div>
+                    <div class="info-row">
+                        <span>Theme</span>
+                        <strong>Standard interface</strong>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <section class="panel panel-pad">
+            <p class="section-kicker">New Note</p>
+            <h2 class="section-title">Write a note</h2>
+            <form class="stack" action="/create-note" method="post">
+                <div class="field">
+                    <label for="content">Note content</label>
+                    <textarea id="content" name="content" rows="6" required placeholder="Write a note, reminder, or draft here."></textarea>
+                    <p class="field-hint">Your note will be saved to your personal list.</p>
+                </div>
+                <div class="button-row">
+                    <button class="primary-button" type="submit">Save Note</button>
+                    <a class="ghost-button" href="/notes">Browse Notes</a>
+                </div>
+            </form>
+        </section>
+
+    </main>
+</body>
+</html>

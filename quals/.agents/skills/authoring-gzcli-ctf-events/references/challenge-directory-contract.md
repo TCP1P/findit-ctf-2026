@@ -35,5 +35,7 @@ Additional root entries may fail upload validation.
 - Rename the folder to the final challenge slug early.
 - Replace placeholder metadata in `challenge.yml` immediately.
 - Keep downloadable player artifacts in `dist/`.
+- Assume every file in `dist/` is visible to players. If `dist/` includes compose files, env files, or deployment manifests, replace real flags and secrets with placeholders before packaging.
+- It is acceptable for maintainer-only metadata such as `challenge.yml` to retain the real flag when that file never leaves the maintainer repo, but the `dist/` copy must stay sanitized.
 - Keep service code and build inputs in `src/`.
 - Keep the intended solution or solver in `solver/`.

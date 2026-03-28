@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shared Notes</title>
+    {{ template "theme-css" . }}
+</head>
+<body>
+    <main class="page-shell">
+        <section class="panel panel-pad">
+            {{ template "theme-brand" . }}
+            <p class="kicker">Shared Notes</p>
+            <h1 class="page-title">Incoming shared notes.</h1>
+            <p class="lede">Review notes that have been shared with you.</p>
+            <div class="link-grid">
+                <a class="ghost-button" href="/notes">Back to Notes</a>
+                <a class="ghost-button" href="/">Back to Home</a>
+            </div>
+        </section>
+
+        <section class="panel panel-pad">
+            <p class="section-kicker">Shared List</p>
+            <h2 class="section-title">Available notes</h2>
+            {{ if .SharedNotes }}
+            <ul class="note-list">
+                {{ range .SharedNotes }}
+                <li class="note-item">
+                    <div class="note-item__content">
+                        <p class="note-eyebrow">Shared Entry</p>
+                        <p class="note-preview">{{ .Content }}</p>
+                    </div>
+                </li>
+                {{ end }}
+            </ul>
+            {{ else }}
+            <p class="empty-state">There are no shared notes available.</p>
+            {{ end }}
+        </section>
+    </main>
+</body>
+</html>
