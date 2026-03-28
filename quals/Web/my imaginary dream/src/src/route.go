@@ -122,6 +122,17 @@ func searchNotes(c *gin.Context) {
 	// Retrieve the search query from the URL query parameters
 	query := c.Query("query")
 
+	if strings.HasPrefix(query, "preview:") {
+		query = query[8:]
+		userNotes := getNotesByContent(username, query)
+
+		c.HTML(http.StatusOK, "preview-results.html", gin.H{
+			"Query": query,
+			"Notes": buildPreviewNotes(userNotes),
+		})
+		return
+	}
+
 	if strings.HasPrefix(query, "view:") {
 		query = query[5:]
 		userNotes := getNotesByContent(username, query)

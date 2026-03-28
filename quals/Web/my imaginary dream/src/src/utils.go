@@ -14,6 +14,27 @@ import (
 )
 
 var metaTagPattern = regexp.MustCompile(`(?is)<meta\b[^>]*>`)
+var previewTagReplacer = strings.NewReplacer(
+	"&lt;b&gt;", "<b>",
+	"&lt;/b&gt;", "</b>",
+	"&lt;strong&gt;", "<strong>",
+	"&lt;/strong&gt;", "</strong>",
+	"&lt;i&gt;", "<i>",
+	"&lt;/i&gt;", "</i>",
+	"&lt;em&gt;", "<em>",
+	"&lt;/em&gt;", "</em>",
+	"&lt;u&gt;", "<u>",
+	"&lt;/u&gt;", "</u>",
+	"&lt;code&gt;", "<code>",
+	"&lt;/code&gt;", "</code>",
+	"&lt;pre&gt;", "<pre>",
+	"&lt;/pre&gt;", "</pre>",
+	"&lt;br&gt;", "<br>",
+	"&lt;br/&gt;", "<br>",
+	"&lt;br /&gt;", "<br>",
+	"&lt;p&gt;", "<p>",
+	"&lt;/p&gt;", "</p>",
+)
 
 func generateID() string {
 	return uuid.New().String()
@@ -64,6 +85,24 @@ func getNoteById(id string) *TNote {
 func extractMetaTags(content template.HTML) template.HTML {
 	matches := metaTagPattern.FindAllString(string(content), -1)
 	return template.HTML(strings.Join(matches, ""))
+}
+
+// Legacy formatting preview preserves a tiny allowlist of inline tags for imported notes.
+// The output is re-escaped first so event handlers, attributes, and unsupported tags cannot survive.
+func renderLegacyPreview(content template.HTML) template.HTML {
+	escaped := template.HTMLEscapeString(string(content))
+	return template.HTML(previewTagReplacer.Replace(escaped))
+}
+
+func buildPreviewNotes(notes []TNote) []TPreviewNote {
+	result := make([]TPreviewNote, 0, len(notes))
+	for _, note := range notes {
+		result = append(result, TPreviewNote{
+			ID:      note.ID,
+			Preview: renderLegacyPreview(note.Content),
+		})
+	}
+	return result
 }
 
 // GenerateRandomString generates a random string of length n
