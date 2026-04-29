@@ -1,0 +1,9 @@
+name: 'crypto-failure'
+services:
+  read-around:
+    build: .
+    restart: on-failure
+    container_name: failure
+    read_only: true
+    ports:
+      - 8999:8999

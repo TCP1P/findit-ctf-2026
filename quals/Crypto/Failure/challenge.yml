@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/dimasma0305/gzcli/refs/heads/main/internal/template/templates/others/ctf-template/.gzctf/challenge.schema.yaml
+
+name: "Failure"
+author: "Etynslop"
+
+description: |
+  This cipher is a failure T_T
+
+type: "StaticAttachment"
+value: 1000
+
+flags:
+  - "FindITCTF{bad_cipher_is_still_bad_ig_a358e85d3b7a60d6}"
+
+provide: "./dist"
+
+scripts:
+    start: cd src && docker compose -p {{.slug}} up --build -d
+    stop: cd src && docker compose -p {{.slug}} down --volumes
+    restart:
+        interval: 15m
+        execute: cd src && docker compose -p {{.slug}} restart
