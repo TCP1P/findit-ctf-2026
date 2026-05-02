@@ -6,6 +6,8 @@ author: "Etynslop"
 description: |
   This cipher is a failure T_T
 
+  nc {{ .host }}
+
 type: "StaticAttachment"
 value: 1000
 
