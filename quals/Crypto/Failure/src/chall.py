@@ -3,7 +3,7 @@ import signal
 from cipher import F41LUR3
 
 # tadinya mau kasi timeout tapi kayanya lebi seru kalo gapake :D
-# TIMEOUT = XXX
+# TIMEOUT = XXXX
 
 def encrypt(pt) :
     assert len(pt) % 12 == 0, "Bad Plaintext"
