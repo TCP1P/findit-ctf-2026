@@ -8,4 +8,4 @@ COPY solve.py /app/solve.py
 
 EXPOSE 4444
 
-CMD ["python", "/app/solve.py", "--http", "--bind-host", "0.0.0.0", "--port", "4444"]
+CMD ["python", "/app/solve.py"]

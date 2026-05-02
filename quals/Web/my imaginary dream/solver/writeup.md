@@ -1,15 +1,3 @@
-![](assets/images/banner.png)
-
-
-
-<img src="assets/images/htb.png" style="margin-left: 20px; zoom: 60%;" align=left />    	<font size="10">my imaginary dream</font>
-
-​		DD<sup>th</sup> Month YYYY
-
-​		Challenge Author(s): Dimas Maulana
-
-​
-
 ### Description:
 
 This challenge introduces a new XSLeak technique inspired by SECCON CTF 2023 qualifiers. It involves exploiting the `sort.Slice` function, which behaves unstably during sorting. By leveraging this "unstable sort" behavior, participants can obtain an oracle to leak the flag stored in the bot note using CSRF and this XSLeak technique.
@@ -21,10 +9,6 @@ Discover and utilize an XSLeak oracle that can be exploited through the `sort.Sl
 ### Difficulty:
 
 Medium
-
-### Flag:
-
-`FINDIT{134k_f0r_s3cr3t}`
 
 ## Challenge
 
