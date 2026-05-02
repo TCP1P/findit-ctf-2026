@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from hashlib import md5
 from typing import Tuple
 
 MASK32 = 0xFFFFFFFF
@@ -60,61 +61,13 @@ def words_to_bytes(words: Words) -> bytes:
     )
 
 
-def _xorshift32(x: int) -> int:
-    x &= MASK32
-    x ^= (x << 13) & MASK32
-    x ^= x >> 17
-    x ^= (x << 5) & MASK32
-    return x & MASK32
-
-
-def _triplet_ok(a: int, b: int, c: int) -> bool:
-    mix = (
-        (_rotl32(a, 3) + _rotl32(b, 11) + _rotl32(c, 19))
-        ^ (a + _rotl32(b, 5) ^ _rotl32(c, 27))
-    ) & MASK32
-    return (mix & 0xFFFF) == 0xC3E1
-
-
-def _base_word(kA: int, kB: int, kC: int, idx: int) -> int:
-    x = (
-        kA
-        ^ _rotl32(kB, idx + 3)
-        ^ _rotl32(kC, idx + 9)
-        ^ ((idx + 1) * 0x9E3779B9)
-        ^ 0xA5A5A5A5
-    ) & MASK32
-    x = _xorshift32((x + _rotl32(kA, idx + 5)) & MASK32)
-    x = _xorshift32((x ^ _rotl32(kB, idx + 11) ^ kC) & MASK32)
-    return x
-
-
-def _derive_prev(kA: int, kB: int, kC: int, idx: int, b: int, c: int) -> int:
-    x = (
-        _base_word(kA, kB, kC, idx)
-        ^ b
-        ^ _rotl32(c, idx + 1)
-        ^ _rotl32(kA, idx + 7)
-        ^ _rotl32(kB, idx + 13)
-        ^ _rotl32(kC, idx + 17)
-    ) & MASK32
-    while True:
-        x = _xorshift32(x)
-        if _triplet_ok(x, b, c):
-            return x
-
-
 def expand_subkeys(key: bytes, rounds: int) -> tuple[int, ...]:
-    kA, kB, kC = words_from_bytes(key)
-
-    k5 = _base_word(kA, kB, kC, 5)
-    k4 = _base_word(kB, kC, kA, 4)
-    k3 = _derive_prev(kA, kB, kC, 3, k4, k5)
-    k2 = _derive_prev(kA, kB, kC, 2, k3, k4)
-    k1 = _derive_prev(kA, kB, kC, 1, k2, k3)
-    k0 = _derive_prev(kA, kB, kC, 0, k1, k2)
-
-    return kA, kB, kC, k0, k1, k2, k3, k4, k5
+    chunks = [key[i:i + 4] for i in range(0, 12, 4)]
+    material = key
+    while len(chunks) < rounds + 3:
+        material = md5(material).digest()[:12]
+        chunks.extend(material[i:i + 4] for i in range(0, 12, 4))
+    return tuple(int.from_bytes(chunk, "big") for chunk in chunks[:rounds + 3])
 
 
 class F41LUR3:
@@ -131,18 +84,20 @@ class F41LUR3:
         b ^= self.whitening[1]
         c ^= self.whitening[2]
         for round_key in self.round_keys:
+            outer_key = _rotl32(round_key, 7)
             a, b, c = (
                 b,
                 c,
-                (a ^ _f_box((b ^ c ^ round_key) & MASK32)) & MASK32,
+                (a ^ _f_box(c ^ _f_box((b ^ round_key) & MASK32) ^ outer_key)) & MASK32,
             )
         return words_to_bytes((a, b, c))
 
     def decrypt_block(self, block: bytes) -> bytes:
         a, b, c = words_from_bytes(block)
         for round_key in reversed(self.round_keys):
+            outer_key = _rotl32(round_key, 7)
             a, b, c = (
-                (c ^ _f_box((a ^ b ^ round_key) & MASK32)) & MASK32,
+                (c ^ _f_box(b ^ _f_box((a ^ round_key) & MASK32) ^ outer_key)) & MASK32,
                 a,
                 b,
             )

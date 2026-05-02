@@ -2,7 +2,8 @@ import os
 import signal
 from cipher import F41LUR3
 
-TIMEOUT = 150 # ingfokan kalo kurang
+# tadinya mau kasi timeout tapi kayanya lebi seru kalo gapake :D
+# TIMEOUT = XXX
 
 def encrypt(pt) :
     assert len(pt) % 12 == 0, "Bad Plaintext"
@@ -46,6 +47,7 @@ if __name__ == "__main__" :
                 break
             print("Wrong key")
 
-        if not timed :
-            signal.alarm(TIMEOUT)
-            timed = not timed
+        # gausah pake
+        # if not timed :
+        #     signal.alarm(TIMEOUT)
+        #     timed = not timed
