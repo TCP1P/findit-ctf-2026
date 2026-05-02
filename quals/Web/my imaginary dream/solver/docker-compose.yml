@@ -12,11 +12,11 @@ services:
       - "--port"
       - "4444"
       - "--target-url"
-      - ${TARGET_URL:-https://1pc.tf:8080}
+      - ${TARGET_URL:-https://challctf.find-it.id:8023}
       - "--public-url"
       - ${PUBLIC_URL:-https://solve.1pc.tf/}
       - "--report-url"
-      - ${REPORT_URL:-https://1pc.tf:8080/report/}
+      - ${REPORT_URL:-https://challctf.find-it.id:8023/report/}
       - --submit
     networks:
       - traefik

