@@ -119,6 +119,8 @@ Read each stage's secret and submit them in the "authentication sequence". Gener
 ==================
 | END_SIMULATION |
 ==================
+
+More details on the simulation can be found in the attached file.
 ''')
             case 2:
                 print_buffered('''
