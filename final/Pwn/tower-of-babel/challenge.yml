@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/dimasma0305/gzcli/refs/heads/main/internal/template/templates/others/ctf-template/.gzctf/challenge.schema.yaml
+
+name: "Tower of Babel"
+author: "m3rr"
+
+# support markdown & html tags
+description: |
+  <style>.briefing{position:relative;background:linear-gradient(rgba(10,14,10,.78),rgba(10,14,10,.78)),url('https://arknights.wiki.gg/images/BB-Welcome_to_Babel.png') center/cover no-repeat;color:#7fff9f;font-family:'Courier New',Consolas,monospace;padding:1.5rem 2rem;border-left:3px solid #4fdf6f;border-radius:4px;line-height:1.8;box-shadow:0 0 20px rgba(79,223,111,.15);width:100%;box-sizing:border-box;animation:briefing-glow 2.4s ease-in-out infinite;text-shadow:0 0 6px rgba(0,0,0,.85),0 1px 2px rgba(0,0,0,.9);cursor:pointer;transition:box-shadow .25s ease;filter:none!important;-webkit-filter:none!important;backdrop-filter:none!important}.briefing:hover{box-shadow:0 0 36px rgba(79,223,111,.4)}.briefing__title{font-weight:bold;font-size:1.1em;margin-bottom:.75rem}.briefing__type{display:block;overflow:hidden;white-space:nowrap;width:0;border-right:2px solid #7fff9f}.briefing__type--year{animation:briefing-type-year .4s steps(9,end) .2s forwards,briefing-caret-off .01s linear .61s forwards}.briefing__type--loc{animation:briefing-type-loc .7s steps(25,end) .7s forwards,briefing-caret-off .01s linear 1.41s forwards}.briefing__type--nc{margin-top:.75rem;border-right-color:#00ffff;color:#00ffff!important;font-weight:bold!important;text-decoration:none!important;text-shadow:0 0 8px rgba(0,255,255,.6),0 1px 2px rgba(0,0,0,.9)!important;-webkit-text-fill-color:#00ffff!important;filter:none!important;-webkit-filter:none!important;animation:briefing-type-nc .6s steps(21,end) 1.5s forwards,briefing-caret .5s step-end infinite 2.1s}.briefing__type--nc:hover{color:#fff!important;-webkit-text-fill-color:#fff!important;text-shadow:0 0 12px rgba(255,255,255,.8),0 1px 2px rgba(0,0,0,.9)!important}.briefing__type--nc::before{content:"";position:absolute;inset:0;z-index:1}.briefing__hl{color:#ffd866}@keyframes briefing-type-year{to{width:9ch}}@keyframes briefing-type-loc{to{width:25ch}}@keyframes briefing-type-nc{to{width:21ch}}@keyframes briefing-caret{50%{border-color:transparent}}@keyframes briefing-caret-off{to{border-color:transparent}}@keyframes briefing-glow{0%,100%{box-shadow:0 0 20px rgba(79,223,111,.15)}50%{box-shadow:0 0 28px rgba(79,223,111,.3)}}</style><div class="briefing"><div class="briefing__title">Terran Conflict History 101</div><div class="briefing__type briefing__type--year">Year <span class="briefing__hl">1094</span></div><div class="briefing__type briefing__type--loc">Current Location - <span class="briefing__hl">Kazdel</span></div><a class="briefing__type briefing__type--nc" href="https://www.youtube.com/watch?v=jhWe4zIb_ZE&t=4s" target="_blank" rel="noopener noreferrer">$ nc {{ .host }} 1094</a></div>
+
+type: "StaticContainer" # don't touch this value
+value: 1000 # don't touch this value
+
+flags:
+  - "FINDIT{Ooooh Babel, the dream Theresa once carried as the King of Sarkaz, now lost forever. It's sad we'll never see the Originium wasteland become a pure and untainted garden of white flowers in Talos-II}"
+
+provide: "./dist"
+
+container:
+    containerImage: "{{.slug}}:latest"
+    memoryLimit: 1024
+    cpuCount: 10
+    storageLimit: 1024
+    exposePort: 5000
+    enableTrafficCapture: false
+
+scripts:
+    start: cd src && docker build -t {{.slug}} .
