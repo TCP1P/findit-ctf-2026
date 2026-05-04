@@ -1,0 +1,11 @@
+{# Ransom-note text macro: wraps each character in a span so the CSS can stagger
+   font/color/rotation per letter, mimicking cut-and-paste headline lettering. #}
+{% macro ransom(text, size='md') -%}
+<span class="ransom ransom-{{ size }}">
+{%- for ch in text -%}
+  {%- if ch == ' ' -%}<span class="sp">&nbsp;</span>
+  {%- else -%}<span>{{ ch }}</span>
+  {%- endif -%}
+{%- endfor -%}
+</span>
+{%- endmacro %}

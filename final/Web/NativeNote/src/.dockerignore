@@ -1,0 +1,12 @@
+# Build outputs — webpack rebuilds these inside the container
+bot/preload.js
+bot/preload-src/node_modules
+bot/node_modules
+bot/preload-src/dist
+
+# Editor / OS junk
+.DS_Store
+*.swp
+*.swo
+.idea
+.vscode

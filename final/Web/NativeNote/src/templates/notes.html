@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{%- from "macros.html" import ransom -%}
+{% block title %}Requests — Phansite{% endblock %}
+{% block content %}
+<div class="page-title">{{ ransom('Requests', 'xl') }}</div>
+
+<div class="new-card">
+  <div class="new-card-head">{{ ransom('Submit a Request', 'sm') }}</div>
+  <form method="POST" action="/note/new">
+    <label>Target</label>
+    <input type="text" name="title" placeholder="Who needs a change of heart?" required />
+
+    <label>Description <span class="hint-inline">(HTML supported — tell us their distorted desires)</span></label>
+    <textarea name="content" rows="6" placeholder="Describe the target…"></textarea>
+
+    <div class="form-actions">
+      <button type="submit">Send</button>
+    </div>
+  </form>
+</div>
+
+<div class="page-title">{{ ransom('Your Requests', 'md') }}</div>
+
+{% if notes %}
+<div class="requests-wrap">
+  <table class="requests-table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Target</th>
+        <th>Votes</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for note_id, title in notes %}
+      <tr>
+        <td class="title-cell"><a href="/note/{{ note_id }}">{{ title | e }}</a></td>
+        <td>John Doe</td>
+        <td class="votes-cell">▴ {{ loop.index }} ▾</td>
+        <td class="action-cell">
+          <form method="POST" action="/report" style="display:inline">
+            <input type="hidden" name="id" value="{{ note_id }}" />
+            <button type="submit" class="btn-report">Forward</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<p class="empty">No requests submitted yet</p>
+{% endif %}
+{% endblock %}

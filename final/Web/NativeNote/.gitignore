@@ -1,0 +1,16 @@
+# Build outputs — webpack rebuilds these inside the Docker image
+src/bot/preload.js
+src/bot/preload-src/node_modules/
+src/bot/node_modules/
+src/bot/preload-src/dist/
+
+# Solver scratch
+solver/*.pyc
+solver/__pycache__/
+
+# Editor / OS junk
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/

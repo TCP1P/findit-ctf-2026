@@ -1,0 +1,37 @@
+{%- from "macros.html" import ransom -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Phansite — Phantom Aficionado Website{% endblock %}</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <nav class="utility">
+    <a class="nav-link" href="/">{{ ransom('Home', 'nav') }}</a>
+    <a class="nav-link" href="/notes">{{ ransom('Requests', 'nav') }}</a>
+    <a class="nav-link" href="/notes">{{ ransom('Chats', 'nav') }}</a>
+    <span class="nav-spacer"></span>
+    <span class="nav-icons">
+      <span class="gear" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M19.43 12.98a7.78 7.78 0 0 0 .05-.98 7.78 7.78 0 0 0-.05-.98l2.11-1.65a.5.5 0 0 0 .12-.64l-2-3.46a.5.5 0 0 0-.61-.22l-2.49 1a7.7 7.7 0 0 0-1.69-.98l-.38-2.65A.5.5 0 0 0 14 2h-4a.5.5 0 0 0-.49.42l-.38 2.65a7.7 7.7 0 0 0-1.69.98l-2.49-1a.5.5 0 0 0-.61.22l-2 3.46a.5.5 0 0 0 .12.64l2.11 1.65a7.78 7.78 0 0 0-.05.98c0 .33.02.66.05.98L2.46 14.63a.5.5 0 0 0-.12.64l2 3.46a.5.5 0 0 0 .61.22l2.49-1c.5.39 1.07.72 1.69.98l.38 2.65A.5.5 0 0 0 10 22h4a.5.5 0 0 0 .49-.42l.38-2.65a7.7 7.7 0 0 0 1.69-.98l2.49 1a.5.5 0 0 0 .61-.22l2-3.46a.5.5 0 0 0-.12-.64l-2.11-1.65ZM12 15.5A3.5 3.5 0 1 1 12 8.5a3.5 3.5 0 0 1 0 7Z"/></svg>
+      </span>
+      {% if session.get('username') %}
+        <span class="session-tag">{{ session['username'] }}</span>
+        <a href="/logout" style="margin-left:10px;font-family:'Bebas Neue',sans-serif;letter-spacing:.18em;text-transform:uppercase;font-size:.9rem;">Sign Out</a>
+      {% else %}
+        <a href="/login" style="margin-left:10px;font-family:'Bebas Neue',sans-serif;letter-spacing:.18em;text-transform:uppercase;font-size:.9rem;">Sign In</a>
+      {% endif %}
+    </span>
+  </nav>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="phansite-foot">
+    <span class="star">★</span> Phantom Aficionado Website <span class="star">★</span> Take Your Heart <span class="star">★</span>
+  </footer>
+</body>
+</html>

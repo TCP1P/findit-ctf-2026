@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="120" viewBox="0 0 240 120" preserveAspectRatio="xMidYMid slice">
+  <rect width="240" height="120" fill="#ffffff"/>
+  <g fill="#0a0a0a">
+    <!-- Sparse jagged stars + wing shapes scattered, mostly white showing through -->
+    <path d="M30 18 L36 30 L48 32 L40 40 L42 52 L30 46 L18 52 L20 40 L12 32 L24 30 Z"/>
+    <path d="M120 24 L126 36 L138 38 L130 46 L132 58 L120 52 L108 58 L110 46 L102 38 L114 36 Z" opacity="0.85"/>
+    <path d="M210 30 L216 42 L228 44 L220 52 L222 64 L210 58 L198 64 L200 52 L192 44 L204 42 Z" opacity="0.75"/>
+    <path d="M70 70 L76 82 L88 84 L80 92 L82 104 L70 98 L58 104 L60 92 L52 84 L64 82 Z"/>
+    <path d="M170 76 L176 88 L188 90 L180 98 L182 110 L170 104 L158 110 L160 98 L152 90 L164 88 Z" opacity="0.85"/>
+    <!-- Plus / cross shapes -->
+    <path d="M170 8 L176 8 L176 18 L186 18 L186 24 L176 24 L176 34 L170 34 L170 24 L160 24 L160 18 L170 18 Z" opacity="0.7"/>
+    <path d="M30 78 L36 78 L36 90 L48 90 L48 96 L36 96 L36 108 L30 108 L30 96 L18 96 L18 90 L30 90 Z" opacity="0.6"/>
+    <!-- Small wing flecks -->
+    <path d="M58 16 L66 12 L70 22 L62 24 Z" opacity="0.6"/>
+    <path d="M148 60 L156 56 L160 66 L152 68 Z" opacity="0.6"/>
+    <path d="M226 86 L234 82 L238 92 L230 94 Z" opacity="0.5"/>
+    <!-- A few thin angled slashes for energy -->
+    <path d="M88 4 L94 0 L106 18 L100 22 Z" opacity="0.5"/>
+    <path d="M96 92 L104 90 L110 110 L102 112 Z" opacity="0.5"/>
+  </g>
+</svg>
