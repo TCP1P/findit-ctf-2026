@@ -1,3 +1,5 @@
+name: nativenote
+
 services:
   app:
     build:
