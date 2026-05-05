@@ -4,19 +4,44 @@ import secrets
 import sqlite3
 import subprocess
 import threading
+import time
+from collections import defaultdict
+from threading import BoundedSemaphore, Lock
 
 from flask import (Flask, abort, redirect, render_template, request,
                    send_from_directory, session, url_for)
 
 app = Flask(__name__)
-app.secret_key = os.urandom(32)
 
-FLAG = os.environ.get("FLAG", "FINDIT{test_flag_replace_me}")
+SECRET_PATH = "/tmp/.flask_secret"
+if os.path.exists(SECRET_PATH):
+    with open(SECRET_PATH, "rb") as f:
+        app.secret_key = f.read()
+else:
+    app.secret_key = os.urandom(32)
+    with open(SECRET_PATH, "wb") as f:
+        f.write(app.secret_key)
+
 DB_PATH = "/tmp/notes.db"
 BOT_DIR = "/app/bot"
 TMP_DIR = "/tmp/notes_output"
-
 os.makedirs(TMP_DIR, exist_ok=True)
+
+MAX_TITLE_LEN = 200
+MAX_CONTENT_LEN = 32 * 1024
+MAX_USERNAME_LEN = 64
+MAX_PASSWORD_LEN = 128
+
+MAX_CONCURRENT_REVIEWS = int(os.environ.get("MAX_CONCURRENT_REVIEWS", "4"))
+REVIEW_SLOTS = BoundedSemaphore(MAX_CONCURRENT_REVIEWS)
+REVIEW_SLOT_TIMEOUT = 60
+
+REPORT_COOLDOWN_S = 20
+_report_last = defaultdict(float)
+_report_lock = Lock()
+
+OUTPUT_TTL_S = 3600
+JANITOR_INTERVAL_S = 600
 
 
 # ---------------------------------------------------------------------------
@@ -56,6 +81,8 @@ def register():
         password = request.form.get("password", "")
         if not username or not password:
             return render_template("register.html", error="All fields required")
+        if len(username) > MAX_USERNAME_LEN or len(password) > MAX_PASSWORD_LEN:
+            return render_template("register.html", error="Field too long")
         try:
             with get_db() as db:
                 db.execute(
@@ -118,6 +145,8 @@ def create_note():
         return abort(401)
     title = request.form.get("title", "Untitled")
     content = request.form.get("content", "")
+    if len(title) > MAX_TITLE_LEN or len(content) > MAX_CONTENT_LEN:
+        return abort(413)
     note_id = secrets.token_hex(10)
     with get_db() as db:
         db.execute(
@@ -129,7 +158,6 @@ def create_note():
 
 @app.route("/note/<note_id>")
 def view_note(note_id):
-    # Notes are public — no auth required (so the bot can view them directly)
     with get_db() as db:
         row = db.execute(
             "SELECT title, content, user_id FROM notes WHERE id=?", (note_id,)
@@ -147,31 +175,48 @@ def view_note(note_id):
     )
 
 
-# ---------------------------------------------------------------------------
-# Report route — sends URL to the Electron admin bot
-# ---------------------------------------------------------------------------
-
 @app.route("/report", methods=["POST"])
 def report():
     if "user_id" not in session:
         return abort(401)
+    user_id = session["user_id"]
+
     note_id = request.form.get("id", "").strip()
     if not re.fullmatch(r"[0-9a-f]{20}", note_id):
         return abort(400)
-    # Verify note exists
+
     with get_db() as db:
-        row = db.execute("SELECT 1 FROM notes WHERE id=?", (note_id,)).fetchone()
+        row = db.execute(
+            "SELECT 1 FROM notes WHERE id=? AND user_id=?",
+            (note_id, user_id),
+        ).fetchone()
     if not row:
         return abort(404)
 
+    now = time.time()
+    with _report_lock:
+        elapsed = now - _report_last[user_id]
+        if elapsed < REPORT_COOLDOWN_S:
+            wait = int(REPORT_COOLDOWN_S - elapsed) + 1
+            return (f"Slow down — try again in {wait}s.", 429)
+        _report_last[user_id] = now
+
     url = f"http://localhost:8080/note/{note_id}"
-    threading.Thread(target=_run_bot, args=(url,), daemon=True).start()
+    threading.Thread(target=_run_review_pooled, args=(url,), daemon=True).start()
     return redirect(url_for("notes"))
 
 
-def _run_bot(url: str):
+def _run_review_pooled(url: str):
+    if not REVIEW_SLOTS.acquire(timeout=REVIEW_SLOT_TIMEOUT):
+        return
+    try:
+        _run_review(url)
+    finally:
+        REVIEW_SLOTS.release()
+
+
+def _run_review(url: str):
     env = os.environ.copy()
-    env["FLAG"] = FLAG
     env["BOT_URL"] = url
     env["DISPLAY"] = ":99"
     electron_bin = os.path.join(BOT_DIR, "node_modules", ".bin", "electron")
@@ -182,24 +227,41 @@ def _run_bot(url: str):
             env=env,
             timeout=35,
         )
-    except Exception as e:
-        print(f"[bot error] {e}", flush=True)
+    except Exception:
+        pass
 
-
-# ---------------------------------------------------------------------------
-# Exfil retrieval — bot writes flag here, player reads it back
-# ---------------------------------------------------------------------------
 
 @app.route("/out/<path:filename>")
 def serve_output(filename):
-    # Only .html files, no path traversal
     if not re.fullmatch(r"[0-9a-f]{20}\.html", filename):
         return abort(403)
     return send_from_directory(TMP_DIR, filename)
+
+
+def _janitor():
+    while True:
+        time.sleep(JANITOR_INTERVAL_S)
+        cutoff = time.time() - OUTPUT_TTL_S
+        try:
+            for name in os.listdir(TMP_DIR):
+                path = os.path.join(TMP_DIR, name)
+                try:
+                    if os.path.isfile(path) and os.path.getmtime(path) < cutoff:
+                        os.unlink(path)
+                except OSError:
+                    pass
+        except FileNotFoundError:
+            pass
+        with _report_lock:
+            stale = [uid for uid, ts in _report_last.items()
+                     if time.time() - ts > OUTPUT_TTL_S]
+            for uid in stale:
+                _report_last.pop(uid, None)
 
 
 # ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
     init_db()
+    threading.Thread(target=_janitor, daemon=True).start()
     app.run(host="0.0.0.0", port=8080, threaded=True)

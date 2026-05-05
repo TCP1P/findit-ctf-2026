@@ -5,6 +5,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
-    environment:
-      FLAG: "FINDIT{3l3ctr0n_pr0t0_p0llut10n_n4t1v3_sp4wn}"
+    volumes:
+      - ./flag.txt:/flag:ro
     restart: unless-stopped

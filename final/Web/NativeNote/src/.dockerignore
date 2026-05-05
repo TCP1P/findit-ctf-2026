@@ -4,6 +4,9 @@ bot/preload-src/node_modules
 bot/node_modules
 bot/preload-src/dist
 
+# Flag is bind-mounted at runtime, not baked into the image
+flag.txt
+
 # Editor / OS junk
 .DS_Store
 *.swp

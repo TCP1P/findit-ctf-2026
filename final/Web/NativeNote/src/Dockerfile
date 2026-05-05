@@ -52,8 +52,5 @@ COPY bot/main.js ./bot/main.js
 COPY start.sh .
 RUN chmod +x start.sh
 
-# Flag is injected via environment variable at runtime
-ENV FLAG="FINDIT{test_flag_replace_me}"
-
 EXPOSE 8080
 CMD ["/app/start.sh"]

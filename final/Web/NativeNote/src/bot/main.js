@@ -11,7 +11,6 @@ app.whenReady().then(() => {
         height: 800,
         show: false,
         webPreferences: {
-            // NOTE: contextIsolation disabled for "legacy plugin compatibility"
             contextIsolation: false,
             sandbox: false,
             nodeIntegration: false,
@@ -20,8 +19,6 @@ app.whenReady().then(() => {
     });
 
     win.loadURL(BOT_URL);
-
-    // Give the page time to fully load and execute scripts
     setTimeout(() => app.quit(), 25000);
 });
 
