@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/dimasma0305/gzcli/refs/heads/main/internal/template/templates/others/ctf-template/.gzctf/challenge.schema.yaml
+
+name: "Extended Notes"
+author: "Marc"
+
+description: |
+  It's either extremely painful reversing session or just "reversing" with AI.
+
+type: "StaticAttachment"
+value: 1000
+
+flags:
+  - "FindITCTF{i-hope-you-didnt-used-llm-on-this-one-if-you-didnt-then-im-proud-of-you}"
+
+provide: "./dist"
