@@ -142,6 +142,22 @@ who inherited DWDB-221E after the Babel incident ?
             case 4:
                 return
 
+def secret_menu():
+    while True:
+        print_buffered('''
+1. get flag
+2. secret menu
+3. exit''')
+        inp = int(input("> "))
+        match inp:
+            case 1:
+                print(f"\n{open('/app/flag.txt').read()}\n")
+            case 2:
+                print("\nBefore her death, Theresa the former wielder of the Civilight Eterna, entrusted the crown to \"Amiya\"\n")
+            case 3:
+                print("\nEND PRTS Transmission ...\n")
+                exit(0)
+
 def main():
     tmp = tempfile.TemporaryDirectory()
     temp_dir = tmp.name
@@ -157,7 +173,7 @@ def main():
     while True:
         print_buffered('''
 1. Help Menu
-2. Run''')
+2. Run Simulation''')
         inp = int(input("> "))
         match inp:
             case 1:
@@ -272,7 +288,8 @@ def main():
             sys.stdout.write("\n")
             sys.stdout.flush()
             if "".join(generated_keys) == input("[?] Enter authentication sequence: ").strip():
-                print(f"\n[+] Access Granted. Flag: {open('/app/flag.txt').read()}")
+                print("\n[+] Access Granted! Okaeri Dokutah.")
+                secret_menu()
             else:
                 print(f"\n[-] Invalid Sequence!")
     finally:
