@@ -11,6 +11,7 @@ if [ $? -ne 0 ]; then
 fi
 
 timeout --foreground "$TIMEOUT_DEVICE" qemu-system-x86_64 \
+  -accel tcg \
   -cpu qemu64,+smep,+smap,+umip \
   -m 512M \
   -smp 1 \
