@@ -10,6 +10,7 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
+printf '\033[H\033[J wait for user shell to spawn ...'
 timeout --foreground "$TIMEOUT_DEVICE" qemu-system-x86_64 \
   -cpu qemu64,+smep,+smap,+umip \
   -m 128M \
