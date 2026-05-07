@@ -114,7 +114,7 @@ Read each stage's secret and submit them in the "authentication sequence". Gener
 | 
 | [?] Enter authentication sequence: oracleama-10king_sarkazDWDB-221E
 | 
-| [+] Access Granted. Flag: FINDIT{TEST_FLAG}
+| [+] Access Granted. Flag: FindITCTF{TEST_FLAG}
 |
 ==================
 | END_SIMULATION |

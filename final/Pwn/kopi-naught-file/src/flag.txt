@@ -1,1 +1,1 @@
-FINDIT{erm actually "universal page cache mean universal file write" 🤓☝️}
+FindITCTF{erm actually "universal page cache mean universal file write" 🤓☝️}

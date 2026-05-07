@@ -12,7 +12,7 @@ type: "StaticContainer" # don't touch this value
 value: 1000 # don't touch this value
 
 flags:
-  - "FINDIT{erm actually \"universal page cache mean universal file write\" 🤓☝️}"
+  - "FindITCTF{erm actually \"universal page cache mean universal file write\" 🤓☝️}"
 
 provide: "./dist"
 
