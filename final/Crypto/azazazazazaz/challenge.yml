@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/dimasma0305/gzcli/refs/heads/main/internal/template/templates/others/ctf-template/.gzctf/challenge.schema.yaml
+
+name: "azazazazazaz"
+category: cryptography
+
+description: |- 
+    azazazazazazazazazaz
+
+    nc <> 6767
+
+type: "StaticAttachment"
+value: 1000
+
+flags:
+  - "FindItCTF{azazazazazazazazazazazazaz_i-cant-think-of-a-good-flag-mabad-gank_727f5d8c5c68256a}"
+
+provide: "./dist"
+
+scripts:
+    start: cd src && docker compose -p {{.slug}} up --build -d
+    stop: cd src && docker compose -p {{.slug}} down --volumes
+    restart:
+        interval: 15m
+        execute: cd src && docker compose -p {{.slug}} restart

@@ -1,0 +1,9 @@
+name: cry-azazazazazaz
+services:
+  azazazazazaz:
+    build: .
+    restart: on-failure
+    container_name: ah-ah-aaa
+    read_only: false
+    ports:
+      - 6767:6767
