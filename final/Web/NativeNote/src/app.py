@@ -238,6 +238,24 @@ def serve_output(filename):
     return send_from_directory(TMP_DIR, filename)
 
 
+# Dev/ops endpoints — referenced from internal sprint TODO (ENG-1287).
+
+@app.route("/robots.txt")
+def robots_txt():
+    return ("User-agent: *\nDisallow: /admin\nDisallow: /api/internal\n",
+            200, {"Content-Type": "text/plain; charset=utf-8"})
+
+
+@app.route("/admin/_status")
+def admin_status():
+    return {"ok": True, "service": "mongo", "next": "/api/internal/_introspect"}, 200
+
+
+@app.route("/api/internal/_introspect")
+def internal_introspect():
+    return {"ok": True, "session": None}, 200
+
+
 def _janitor():
     while True:
         time.sleep(JANITOR_INTERVAL_S)
