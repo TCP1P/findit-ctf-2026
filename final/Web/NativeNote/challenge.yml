@@ -1,27 +1,20 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/dimasma0305/gzcli/refs/heads/main/internal/template/templates/others/ctf-template/.gzctf/challenge.schema.yaml
-
-name: "NativeNote"
-author: "Dimas Maulana"
-
-description: |
+name: NativeNote
+author: Dimas Maulana
+description: >-
   We built a sleek note-sharing app — now our admin reviews flagged notes with a premium desktop client.
+
   The client was written quickly, and the developers may have taken a few shortcuts.
+
 
   Can you get the admin's flag?
 
+
   URL: https://{{ .host }}
 
-type: "StaticAttachment"
-value: 1000
 
+  testing
+type: StaticAttachment
+category: Web
+difficulty: 5
 flags:
-  - "FINDIT{3l3ctr0n_pr0t0_p0llut10n_n4t1v3_sp4wn}"
-
-provide: "./dist"
-
-scripts:
-    start: cd src && docker compose -p {{.slug}} up --build -d
-    stop: cd src && docker compose -p {{.slug}} down --volumes
-    restart:
-        interval: 15m
-        execute: cd src && docker compose -p {{.slug}} restart
+- FINDIT{3l3ctr0n_pr0t0_p0llut10n_n4t1v3_sp4wn}
