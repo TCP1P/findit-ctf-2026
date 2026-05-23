@@ -1,28 +1,17 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/dimasma0305/gzcli/refs/heads/main/internal/template/templates/others/ctf-template/.gzctf/challenge.schema.yaml
-
-name: "Kopi Naught File"
-author: "m3rr"
-
-# support markdown & html tags
-description: |
+name: Kopi Naught File
+author: m3rr
+description: >
   copy fail ??<br>
+
   more like "Kopi Naught File" HahAhAhhAhh ... get it ? ( pliss laugh .·°՞(っ-ᯅ-ς)՞°·. )
-
-type: "StaticContainer" # don't touch this value
-value: 1000 # don't touch this value
-
+type: StaticContainer
+category: Pwn
+difficulty: 5
 flags:
-  - "FindITCTF{erm actually \"universal page cache mean universal file write\" 🤓☝️}"
-
-provide: "./dist"
-
+- "FindITCTF{erm actually \"universal page cache mean universal file write\" \U0001F913☝️}"
 container:
-    containerImage: "{{.slug}}:latest"
-    memoryLimit: 1024
-    cpuCount: 10
-    storageLimit: 1024
-    exposePort: 5000
-    enableTrafficCapture: false
-
-scripts:
-    start: cd src && docker build -t {{.slug}} .
+  containerImage: gzctf-auto/13/kopi-naught-file:f3eafe4d164d
+  memoryLimit: 1024
+  cpuCount: 10
+  storageLimit: 1024
+  exposePort: 5000
