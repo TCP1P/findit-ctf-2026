@@ -10,9 +10,6 @@ description: >-
 
 
   URL: https://{{ .host }}
-
-
-  testing
 type: StaticAttachment
 category: Web
 difficulty: 5
