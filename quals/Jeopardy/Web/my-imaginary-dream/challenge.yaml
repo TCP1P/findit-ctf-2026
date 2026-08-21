@@ -6,9 +6,6 @@ description: 'A Go note-taking app offers note creation, search, single-note vie
   An admin bot also interacts with the service. Somewhere in that workflow is enough to recover protected data.
 
 
-  URL: https://{{ .host }}
-
-
   ---
 
   Historical archive converted for RSCTF practice. Original service endpoints may no longer be online. [Review the source challenge](https://github.com/TCP1P/findit-ctf-2026/tree/main/quals/Web/my%20imaginary%20dream).'
