@@ -1,0 +1,19 @@
+name: Failure
+author: Etynslop
+description: 'This cipher is a failure T_T
+
+
+  nc {{ .host }}
+
+
+  ---
+
+  Historical archive converted for RSCTF practice. Original service endpoints may no longer be online. [Review the source challenge](https://github.com/TCP1P/findit-ctf-2026/tree/main/quals/Crypto/Failure).'
+type: StaticAttachment
+category: Crypto
+minScoreRate: 0.25
+difficulty: 5
+disableBloodBonus: false
+flags:
+- FindITCTF{bad_cipher_is_still_bad_ig_a358e85d3b7a60d6}
+provide: dist

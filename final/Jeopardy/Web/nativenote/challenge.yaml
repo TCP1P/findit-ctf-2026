@@ -1,0 +1,24 @@
+name: NativeNote
+author: Dimas Maulana
+description: 'We built a sleek note-sharing app — now our admin reviews flagged notes with a premium desktop client.
+
+  The client was written quickly, and the developers may have taken a few shortcuts.
+
+
+  Can you get the admin''s flag?
+
+
+  URL: https://{{ .host }}
+
+
+  ---
+
+  Historical archive converted for RSCTF practice. Original service endpoints may no longer be online. [Review the source challenge](https://github.com/TCP1P/findit-ctf-2026/tree/main/final/Web/NativeNote).'
+type: StaticAttachment
+category: Web
+minScoreRate: 0.25
+difficulty: 5.0
+disableBloodBonus: false
+flags:
+- FINDIT{3l3ctr0n_pr0t0_p0llut10n_n4t1v3_sp4wn}
+provide: dist

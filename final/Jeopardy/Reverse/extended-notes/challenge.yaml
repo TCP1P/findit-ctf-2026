@@ -1,0 +1,16 @@
+name: Extended Notes
+author: Marc
+description: 'It''s either extremely painful reversing session or just "reversing" with AI.
+
+
+  ---
+
+  Historical archive converted for RSCTF practice. Original service endpoints may no longer be online. [Review the source challenge](https://github.com/TCP1P/findit-ctf-2026/tree/main/final/Reverse/Extended%20Notes).'
+type: StaticAttachment
+category: Reverse
+minScoreRate: 0.25
+difficulty: 5
+disableBloodBonus: false
+flags:
+- FindITCTF{i-hope-you-didnt-used-llm-on-this-one-if-you-didnt-then-im-proud-of-you}
+provide: dist

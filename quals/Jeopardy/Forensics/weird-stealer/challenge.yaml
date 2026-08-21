@@ -1,0 +1,16 @@
+name: weird stealer
+author: buwung ap tu man
+description: 'i just found this weird stealer in the wild, no scenario needed, my heart is already stolen ❤️
+
+
+  ---
+
+  Historical archive converted for RSCTF practice. Original service endpoints may no longer be online. [Review the source challenge](https://github.com/TCP1P/findit-ctf-2026/tree/main/quals/Forensics/weird-stealer).'
+type: StaticAttachment
+category: Forensics
+minScoreRate: 0.25
+difficulty: 5
+disableBloodBonus: false
+flags:
+- FindITCTF{#kita usahakan wfh gaji usd itu!!}
+provide: dist

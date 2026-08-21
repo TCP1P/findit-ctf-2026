@@ -1,0 +1,109 @@
+{
+  "sourceRepository": "TCP1P/findit-ctf-2026",
+  "targetRepository": "TCP1P/findit-ctf-2026",
+  "private": false,
+  "events": [
+    "Find IT CTF 2026 — Qualifiers",
+    "Find IT CTF 2026 — Finals"
+  ],
+  "challenges": [
+    {
+      "name": "azazazazazaz",
+      "category": "Crypto",
+      "source": "final/Crypto/azazazazazaz/challenge.yml",
+      "sourceUrl": "https://github.com/TCP1P/findit-ctf-2026/tree/main/final/Crypto/azazazazazaz",
+      "type": "StaticAttachment",
+      "warnings": [],
+      "manifest": "final/Jeopardy/Crypto/azazazazazaz/challenge.yaml"
+    },
+    {
+      "name": "No Malware This Time",
+      "category": "Forensics",
+      "source": "final/Forensics/no-malware-this-time/challenge.yml",
+      "sourceUrl": "https://github.com/TCP1P/findit-ctf-2026/tree/main/final/Forensics/no-malware-this-time",
+      "type": "StaticAttachment",
+      "warnings": [],
+      "manifest": "final/Jeopardy/Forensics/no-malware-this-time/challenge.yaml"
+    },
+    {
+      "name": "Kopi Naught File",
+      "category": "Pwn",
+      "source": "final/Pwn/kopi-naught-file/challenge.yml",
+      "sourceUrl": "https://github.com/TCP1P/findit-ctf-2026/tree/main/final/Pwn/kopi-naught-file",
+      "type": "StaticAttachment",
+      "warnings": [
+        "container package was not safely portable; imported as an archived attachment",
+        "no player attachment files were present"
+      ],
+      "manifest": "final/Jeopardy/Pwn/kopi-naught-file/challenge.yaml"
+    },
+    {
+      "name": "Tower of Babel",
+      "category": "Pwn",
+      "source": "final/Pwn/tower-of-babel/challenge.yml",
+      "sourceUrl": "https://github.com/TCP1P/findit-ctf-2026/tree/main/final/Pwn/tower-of-babel",
+      "type": "StaticAttachment",
+      "warnings": [
+        "container package was not safely portable; imported as an archived attachment",
+        "attachment archive exceeds RSCTF's per-file limit"
+      ],
+      "manifest": "final/Jeopardy/Pwn/tower-of-babel/challenge.yaml"
+    },
+    {
+      "name": "Extended Notes",
+      "category": "Reverse",
+      "source": "final/Reverse/Extended Notes/challenge.yml",
+      "sourceUrl": "https://github.com/TCP1P/findit-ctf-2026/tree/main/final/Reverse/Extended%20Notes",
+      "type": "StaticAttachment",
+      "warnings": [],
+      "manifest": "final/Jeopardy/Reverse/extended-notes/challenge.yaml"
+    },
+    {
+      "name": "NativeNote",
+      "category": "Web",
+      "source": "final/Web/NativeNote/challenge.yml",
+      "sourceUrl": "https://github.com/TCP1P/findit-ctf-2026/tree/main/final/Web/NativeNote",
+      "type": "StaticAttachment",
+      "warnings": [
+        "no player attachment files were present"
+      ],
+      "manifest": "final/Jeopardy/Web/nativenote/challenge.yaml"
+    },
+    {
+      "name": "Failure",
+      "category": "Crypto",
+      "source": "quals/Crypto/Failure/challenge.yml",
+      "sourceUrl": "https://github.com/TCP1P/findit-ctf-2026/tree/main/quals/Crypto/Failure",
+      "type": "StaticAttachment",
+      "warnings": [],
+      "manifest": "quals/Jeopardy/Crypto/failure/challenge.yaml"
+    },
+    {
+      "name": "weird stealer",
+      "category": "Forensics",
+      "source": "quals/Forensics/weird-stealer/challenge.yml",
+      "sourceUrl": "https://github.com/TCP1P/findit-ctf-2026/tree/main/quals/Forensics/weird-stealer",
+      "type": "StaticAttachment",
+      "warnings": [],
+      "manifest": "quals/Jeopardy/Forensics/weird-stealer/challenge.yaml"
+    },
+    {
+      "name": "unoriginal",
+      "category": "Reverse",
+      "source": "quals/Reverse/unoriginal/challenge.yml",
+      "sourceUrl": "https://github.com/TCP1P/findit-ctf-2026/tree/main/quals/Reverse/unoriginal",
+      "type": "StaticAttachment",
+      "warnings": [],
+      "manifest": "quals/Jeopardy/Reverse/unoriginal/challenge.yaml"
+    },
+    {
+      "name": "my imaginary dream",
+      "category": "Web",
+      "source": "quals/Web/my imaginary dream/challenge.yml",
+      "sourceUrl": "https://github.com/TCP1P/findit-ctf-2026/tree/main/quals/Web/my%20imaginary%20dream",
+      "type": "StaticAttachment",
+      "warnings": [],
+      "manifest": "quals/Jeopardy/Web/my-imaginary-dream/challenge.yaml"
+    }
+  ]
+}

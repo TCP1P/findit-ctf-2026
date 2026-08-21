@@ -1,0 +1,5 @@
+Kopi Naught File
+
+Original source: https://github.com/TCP1P/findit-ctf-2026/tree/main/final/Pwn/kopi-naught-file
+
+Local archive note: no player attachment files were present.
