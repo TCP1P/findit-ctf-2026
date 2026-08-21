@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 130">
+  <!-- Domino mask body: red fill with white outline so it pops on dark nav -->
+  <path d="
+    M 18 65
+    C 14 38, 50 14, 92 22
+    C 108 25, 116 30, 120 36
+    C 124 30, 132 25, 148 22
+    C 190 14, 226 38, 222 65
+    C 220 86, 200 102, 168 102
+    C 152 102, 140 96, 130 84
+    C 126 80, 122 78, 120 78
+    C 118 78, 114 80, 110 84
+    C 100 96, 88 102, 72 102
+    C 40 102, 20 86, 18 65 Z
+  " fill="#e60012" stroke="#ffffff" stroke-width="6" stroke-linejoin="round"/>
+  <!-- Pointed wing tips on either side -->
+  <path d="M 18 65 L 0 48 L 24 56 Z" fill="#e60012" stroke="#ffffff" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M 222 65 L 240 48 L 216 56 Z" fill="#e60012" stroke="#ffffff" stroke-width="5" stroke-linejoin="round"/>
+  <!-- Forehead notch -->
+  <path d="M 114 30 L 120 18 L 126 30 Z" fill="#e60012" stroke="#ffffff" stroke-width="4" stroke-linejoin="round"/>
+  <!-- Left eye cutout -->
+  <path d="
+    M 38 60 L 60 48 L 92 50 L 100 62
+    L 88 76 L 60 78 L 40 72 Z
+  " fill="#0a0a0a"/>
+  <!-- Right eye cutout -->
+  <path d="
+    M 140 62 L 148 50 L 180 48 L 202 60
+    L 200 72 L 180 78 L 152 76 Z
+  " fill="#0a0a0a"/>
+</svg>

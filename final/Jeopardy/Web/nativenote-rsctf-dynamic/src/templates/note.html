@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{%- from "macros.html" import ransom -%}
+{% block title %}{{ title | e }} — Phansite{% endblock %}
+{% block content %}
+<div class="page-title">{{ ransom('Request', 'md') }}</div>
+
+<div class="detail-wrap">
+  <article class="detail-card">
+    <div class="detail-head">
+      <div>{{ ransom(title, 'md') }}</div>
+      {% if is_owner %}
+      <form method="POST" action="/report">
+        <input type="hidden" name="id" value="{{ note_id }}" />
+        <button type="submit" class="btn-report">Forward to Joker</button>
+      </form>
+      {% endif %}
+    </div>
+    <div class="detail-meta">
+      <span class="author">Anonymous</span> filed request · case #{{ note_id[:8] }}
+    </div>
+    <hr />
+    <div class="detail-body">
+      {{ content | safe }}
+    </div>
+  </article>
+</div>
+{% endblock %}

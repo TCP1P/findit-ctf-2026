@@ -1,0 +1,18 @@
+# Build outputs — webpack rebuilds these inside the container
+bot/preload.js
+bot/preload-src/node_modules
+bot/node_modules
+bot/preload-src/dist
+
+# Flag is bind-mounted at runtime, not baked into the image
+flag.txt
+
+# Compose-only env, not for the image
+.env
+
+# Editor / OS junk
+.DS_Store
+*.swp
+*.swo
+.idea
+.vscode

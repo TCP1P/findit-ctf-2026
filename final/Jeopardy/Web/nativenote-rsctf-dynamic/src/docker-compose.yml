@@ -1,0 +1,46 @@
+name: nativenote
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      RSCTF_FLAG: ${RSCTF_FLAG:?RSCTF_FLAG must be set}
+    restart: unless-stopped
+    networks:
+      internal:
+      traefik:
+        ipv4_address: 172.1.0.100
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik"
+      - "traefik.http.routers.nativenote.rule=Host(`nativenote.${DOMAIN}`)"
+      - "traefik.http.routers.nativenote.entrypoints=websecure"
+      - "traefik.http.routers.nativenote.tls.certresolver=letsencrypt"
+      - "traefik.http.services.nativenote.loadbalancer.server.port=8080"
+
+  sniffer:
+    image: nicolaka/netshoot
+    network_mode: "service:app"
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+      - DAC_OVERRIDE
+    read_only: true
+    volumes:
+      - /root/homelab/tulip/pcaps:/pcaps
+    command: >-
+      tcpdump -i eth1 -U -G 60
+      -w /pcaps/${COMPOSE_PROJECT_NAME:-nativenote}_%Y%m%d%H%M%S.pcap
+      'tcp port 8080'
+    depends_on:
+      - app
+    restart: unless-stopped
+
+networks:
+  internal:
+  traefik:
+    external: true

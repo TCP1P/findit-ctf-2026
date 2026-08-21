@@ -1,0 +1,520 @@
+/* ========================================================================
+   PHANSITE — Phantom Aficionado Website
+   Visual style derived from a Phansite community Figma reference:
+   black star-pattern bg, ransom-note headers, skewed pill controls,
+   primary red action buttons, white outline accents.
+   ======================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Permanent+Marker&family=Special+Elite&display=swap');
+
+:root {
+  --bg:        #0a0a0a;
+  --bg-alt:    #131313;
+  --panel:     #ffffff;
+  --ink:       #000000;
+  --red:       #e60012;
+  --red-deep:  #a80000;
+  --red-bright:#ff1a2c;
+  --white:     #ffffff;
+  --off-white: #f5f5f5;
+  --muted:     #9a9a9a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+
+body {
+  background:
+    url('/static/bg-pattern.svg') repeat,
+    var(--bg);
+  color: var(--white);
+  font-family: 'Oswald', 'Helvetica Neue', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+a { color: var(--white); text-decoration: none; }
+a:hover { color: var(--red-bright); }
+
+/* ─── Top nav: dark with thin red border ─── */
+nav.utility {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 14px 30px;
+  background: var(--ink);
+  border-bottom: 3px solid var(--red);
+}
+nav.utility .nav-link {
+  flex: 0 0 auto;
+  margin-right: 36px;
+  display: inline-flex;
+}
+nav.utility .nav-spacer { flex: 1; }
+nav.utility .nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--white);
+}
+nav.utility .nav-icons .gear,
+nav.utility .nav-icons .mask-icon {
+  width: 26px; height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+nav.utility .nav-icons .mask-icon img { width: 32px; height: auto; filter: drop-shadow(0 0 4px rgba(230,0,18,0.6)); }
+nav.utility .nav-icons .gear svg { width: 22px; height: 22px; fill: var(--white); }
+nav.utility .nav-icons .gear:hover svg { fill: var(--red-bright); }
+nav.utility .session-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 16px;
+  padding: 4px 12px;
+  background: var(--red);
+  color: var(--white);
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.18em;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+/* ─── Ransom-note letter typography ─── */
+.ransom {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  gap: 1px;
+  align-items: baseline;
+  font-family: 'Special Elite', 'Permanent Marker', 'Oswald', monospace;
+  letter-spacing: 0;
+  line-height: 1;
+}
+.ransom > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0.9em;
+  padding: 1px 4px;
+  background: var(--white);
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  font-weight: 700;
+  text-transform: lowercase;
+  box-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+}
+.ransom > span.sp {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  min-width: 0.4em;
+}
+/* Subtle per-letter variations — small rotations only */
+.ransom > span:nth-child(7n+1) { transform: rotate(-2deg); }
+.ransom > span:nth-child(7n+2) { transform: rotate(1deg); font-style: italic; }
+.ransom > span:nth-child(7n+3) { transform: rotate(-1deg); }
+.ransom > span:nth-child(7n+4) { transform: rotate(2deg); }
+.ransom > span:nth-child(7n+5) { transform: rotate(-3deg); font-family: 'Permanent Marker', sans-serif; }
+.ransom > span:nth-child(7n+6) { transform: rotate(1deg); }
+.ransom > span:nth-child(7n+7) { transform: rotate(-1deg); font-style: italic; }
+
+/* Variants where preserving uppercase helps: nav uses uppercase rendering */
+.ransom-nav { font-size: 0.95rem; }
+.ransom-nav > span { padding: 1px 4px; font-size: 0.8rem; text-transform: uppercase; }
+
+/* Big page-header ransom (single line, modest size to match the Figma proportions) */
+.ransom-xl { font-size: 2.4rem; }
+.ransom-xl > span { padding: 2px 7px; }
+
+.ransom-md { font-size: 1.7rem; }
+.ransom-md > span { padding: 2px 6px; }
+
+.ransom-sm { font-size: 1.2rem; }
+.ransom-sm > span { padding: 1px 5px; }
+
+/* ─── Main content area ─── */
+main {
+  position: relative;
+  z-index: 1;
+  max-width: 1080px;
+  margin: 40px auto 60px;
+  padding: 0 28px;
+}
+
+/* ─── Page header bar (ransom title + accent) ─── */
+.page-title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+.page-title::before {
+  content: "";
+  width: 18px;
+  height: 46px;
+  background: var(--red);
+  transform: skew(-18deg);
+}
+
+/* ─── Skewed pill input style (Figma login fields) ─── */
+.field-group { display: flex; flex-direction: column; gap: 14px; }
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea {
+  width: 100%;
+  background: var(--ink);
+  color: var(--white);
+  border: 2px solid var(--white);
+  border-radius: 999px;
+  padding: 10px 26px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-align: center;
+  outline: none;
+  transform: skew(-12deg);
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+}
+input[type="text"]::placeholder,
+input[type="password"]::placeholder,
+input[type="email"]::placeholder,
+textarea::placeholder { color: var(--off-white); opacity: 0.85; }
+input:focus, textarea:focus {
+  border-color: var(--red);
+  box-shadow: 0 0 0 1px var(--red), 4px 4px 0 var(--red);
+  background: #0e0e0e;
+}
+textarea {
+  transform: none;
+  border-radius: 6px;
+  text-align: left;
+  min-height: 140px;
+  resize: vertical;
+  font-family: 'Oswald', sans-serif;
+}
+
+/* Wrapper to hold the de-skewed text on the input */
+.skew-wrap {
+  position: relative;
+}
+.skew-wrap input { /* visual skew while keeping text upright via inner skew is complex;
+                      simpler: keep input skewed and let the text ride along — the original
+                      Figma shows the text actually skewed along with the pill */
+}
+
+/* ─── Buttons ─── */
+button[type="submit"], .btn,
+.btn-report {
+  display: inline-block;
+  background: var(--red);
+  color: var(--white);
+  border: 3px solid var(--white);
+  border-radius: 999px;
+  padding: 12px 50px;
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
+  font-size: 1.35rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transform: skew(-12deg);
+  box-shadow: 5px 5px 0 var(--ink);
+  transition: transform 0.1s, box-shadow 0.1s, background 0.15s, color 0.15s;
+}
+button[type="submit"]:hover, .btn:hover, .btn-report:hover {
+  background: var(--white);
+  color: var(--red);
+  transform: skew(-12deg) translate(-2px, -2px);
+  box-shadow: 7px 7px 0 var(--ink);
+}
+button[type="submit"]:active { transform: skew(-12deg) translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+
+/* Secondary (small report) */
+.btn-report {
+  padding: 5px 18px;
+  font-size: 0.9rem;
+  background: var(--ink);
+  color: var(--red-bright);
+  border: 2px solid var(--red);
+  border-radius: 999px;
+  box-shadow: 3px 3px 0 var(--white);
+}
+.btn-report:hover {
+  background: var(--red);
+  color: var(--white);
+  box-shadow: 5px 5px 0 var(--white);
+}
+
+/* ─── Auth panel (login / register) — torn paper frame ─── */
+.auth-panel {
+  position: relative;
+  max-width: 360px;
+  margin: 60px auto 80px;
+  padding: 30px 20px 40px;
+  text-align: center;
+}
+.auth-panel .auth-title {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+}
+.auth-panel form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+.auth-panel form > * { width: 100%; max-width: 280px; }
+.auth-panel .actions { margin-top: 10px; display: flex; justify-content: center; }
+.auth-panel .hint {
+  margin-top: 18px;
+  color: var(--off-white);
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  font-family: 'Oswald', sans-serif;
+}
+.auth-panel .hint a { color: var(--red-bright); }
+.auth-panel .hint a:hover { color: var(--white); text-decoration: underline; }
+
+/* Torn paper edges — full-viewport-width white strip with jagged "ripped" edge */
+.torn-edge {
+  position: relative;
+  height: 130px;
+  width: 100vw;
+  /* Break out of any constrained parent (e.g. .main with max-width) */
+  margin-left: calc(-50vw + 50%);
+  background: url('/static/torn-edge.svg') repeat-x;
+  background-size: auto 100%;
+  /* Jagged bottom edge via clip-path */
+  clip-path: polygon(
+    0 0, 100% 0, 100% 88%,
+    98% 96%, 95% 86%, 92% 94%, 88% 84%, 84% 96%, 80% 88%,
+    76% 96%, 72% 86%, 68% 94%, 64% 84%, 60% 96%, 56% 88%,
+    52% 96%, 48% 86%, 44% 94%, 40% 84%, 36% 96%, 32% 88%,
+    28% 96%, 24% 86%, 20% 94%, 16% 84%, 12% 96%, 8% 88%,
+    4% 96%, 2% 86%, 0 92%
+  );
+}
+.torn-edge.bottom {
+  /* Flip vertically so the jagged edge is at the top */
+  transform: scaleY(-1);
+}
+
+/* Auth page wrapper that removes main's outer padding so torn edges sit flush */
+.auth-page {
+  margin-top: -40px;     /* cancel main's top margin */
+  margin-bottom: -60px;  /* cancel main's bottom margin */
+}
+
+/* ─── Requests table ─── */
+.requests-wrap {
+  background: rgba(0,0,0,0.55);
+  border: 2px solid var(--white);
+  margin-bottom: 28px;
+  overflow: hidden;
+}
+.requests-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Oswald', sans-serif;
+}
+.requests-table thead th {
+  background: var(--white);
+  color: var(--ink);
+  text-align: left;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.16em;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  padding: 12px 22px;
+  position: relative;
+}
+.requests-table thead th:first-child {
+  clip-path: polygon(0 0, 100% 0, calc(100% - 22px) 100%, 0 100%);
+}
+.requests-table thead th:last-child {
+  clip-path: polygon(22px 0, 100% 0, 100% 100%, 0 100%);
+  text-align: center;
+}
+.requests-table tbody tr {
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  transition: background 0.15s;
+}
+.requests-table tbody tr:nth-child(even) { background: rgba(255,255,255,0.04); }
+.requests-table tbody tr:hover { background: rgba(230,0,18,0.18); }
+.requests-table tbody td {
+  padding: 14px 22px;
+  color: var(--white);
+  font-size: 1rem;
+  vertical-align: middle;
+}
+.requests-table tbody td.title-cell {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.requests-table tbody td.title-cell a { color: var(--white); }
+.requests-table tbody td.title-cell a:hover { color: var(--red-bright); }
+.requests-table tbody td.votes-cell {
+  text-align: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.2em;
+  color: var(--red-bright);
+}
+.requests-table tbody td.action-cell { text-align: right; }
+
+/* ─── New-request card (form panel) ─── */
+.new-card {
+  background: var(--ink);
+  border: 2px solid var(--white);
+  padding: 28px 30px;
+  margin-bottom: 28px;
+  box-shadow: 6px 6px 0 var(--red);
+}
+.new-card .new-card-head {
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.new-card label {
+  display: block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.2em;
+  color: var(--red-bright);
+  text-transform: uppercase;
+  margin: 14px 0 6px;
+}
+.new-card label:first-of-type { margin-top: 0; }
+.new-card .hint-inline {
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-transform: none;
+  font-weight: 400;
+}
+.new-card .form-actions {
+  margin-top: 22px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ─── Single request detail ─── */
+.detail-wrap {
+  position: relative;
+  margin-bottom: 30px;
+}
+.detail-card {
+  position: relative;
+  background: var(--white);
+  color: var(--ink);
+  border: 3px solid var(--ink);
+  padding: 36px 40px 40px;
+  box-shadow: 9px 9px 0 var(--red), 9px 9px 0 3px var(--ink);
+}
+.detail-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 8px;
+  background: linear-gradient(90deg, var(--red) 0 60%, var(--ink) 60% 100%);
+}
+.detail-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.detail-meta {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #555;
+  margin-bottom: 14px;
+}
+.detail-meta .author {
+  background: var(--ink);
+  color: var(--red-bright);
+  padding: 2px 10px;
+  margin-right: 8px;
+  letter-spacing: 0.18em;
+}
+.detail-card hr {
+  border: none;
+  border-top: 3px dashed var(--red);
+  margin: 18px 0 22px;
+}
+.detail-body {
+  font-size: 1.02rem;
+  line-height: 1.85;
+  color: var(--ink);
+  background: var(--off-white);
+  border-left: 6px solid var(--red);
+  padding: 18px 22px;
+}
+
+/* ─── Errors / hints / empty ─── */
+.error {
+  display: inline-block;
+  background: var(--red);
+  color: var(--white);
+  border: 2px solid var(--ink);
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transform: skew(-8deg);
+  box-shadow: 3px 3px 0 var(--white);
+}
+.empty {
+  text-align: center;
+  padding: 50px 20px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.22em;
+  color: var(--muted);
+  text-transform: uppercase;
+  border: 2px dashed rgba(255,255,255,0.18);
+}
+
+/* ─── Footer ─── */
+footer.phansite-foot {
+  position: relative;
+  z-index: 1;
+  margin-top: 60px;
+  padding: 18px 30px;
+  background: var(--ink);
+  border-top: 3px solid var(--red);
+  text-align: center;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.32em;
+  font-size: 0.85rem;
+  color: var(--off-white);
+}
+footer.phansite-foot .star { color: var(--red-bright); margin: 0 8px; }
+
+/* ─── Responsive ─── */
+@media (max-width: 760px) {
+  nav.utility { padding: 12px 18px; flex-wrap: wrap; gap: 8px; }
+  nav.utility .nav-link { margin-right: 16px; }
+  main { padding: 0 16px; margin-top: 24px; }
+  .ransom-xl { font-size: 2.6rem; }
+  .ransom-md { font-size: 1.6rem; }
+  .auth-panel { padding: 40px 22px; }
+  .requests-table thead th, .requests-table tbody td { padding: 10px 12px; font-size: 0.9rem; }
+  .detail-card { padding: 24px 22px 30px; }
+}

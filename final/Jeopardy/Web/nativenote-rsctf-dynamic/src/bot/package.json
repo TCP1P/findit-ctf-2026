@@ -1,0 +1,12 @@
+{
+  "name": "nativenote-bot",
+  "version": "1.0.0",
+  "description": "NativeNote admin desktop viewer",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron": "^28.3.3"
+  }
+}

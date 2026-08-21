@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 180 180">
+  <rect width="180" height="180" fill="#0a0a0a"/>
+  <g fill="#2a2a2a">
+    <!-- Big jagged stars + plus signs scattered, denser & brighter than before -->
+    <path d="M30 14 L40 32 L60 34 L46 48 L50 68 L30 58 L10 68 L14 48 L0 34 L20 32 Z"/>
+    <path d="M124 22 L132 38 L150 40 L138 51 L142 68 L124 58 L106 68 L110 51 L98 40 L116 38 Z"/>
+    <path d="M78 78 L84 92 L100 94 L88 102 L92 116 L78 108 L64 116 L68 102 L56 94 L72 92 Z"/>
+    <path d="M28 124 L34 136 L46 138 L38 146 L40 158 L28 152 L16 158 L18 146 L10 138 L22 136 Z"/>
+    <path d="M132 130 L138 142 L152 144 L142 152 L146 164 L132 158 L118 164 L122 152 L114 144 L126 142 Z"/>
+    <path d="M170 60 L176 72 L186 74 L178 82 L182 94 L170 88 L158 94 L162 82 L154 74 L164 72 Z"/>
+    <!-- Plus / cross shapes -->
+    <path d="M88 8 L96 8 L96 22 L110 22 L110 30 L96 30 L96 44 L88 44 L88 30 L74 30 L74 22 L88 22 Z"/>
+    <path d="M14 80 L22 80 L22 92 L34 92 L34 100 L22 100 L22 112 L14 112 L14 100 L2 100 L2 92 L14 92 Z"/>
+    <path d="M156 100 L164 100 L164 112 L176 112 L176 120 L164 120 L164 132 L156 132 L156 120 L144 120 L144 112 L156 112 Z"/>
+    <path d="M88 156 L96 156 L96 168 L108 168 L108 176 L96 176 L96 188 L88 188 L88 176 L76 176 L76 168 L88 168 Z"/>
+    <!-- Wing/bracket flecks -->
+    <path d="M58 50 L68 44 L72 54 L62 58 Z"/>
+    <path d="M104 110 L114 104 L118 114 L108 118 Z"/>
+    <path d="M156 18 L166 12 L170 22 L160 26 Z"/>
+  </g>
+</svg>

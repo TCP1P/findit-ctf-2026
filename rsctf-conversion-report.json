@@ -63,11 +63,9 @@
       "category": "Web",
       "source": "final/Web/NativeNote/challenge.yml",
       "sourceUrl": "https://github.com/TCP1P/findit-ctf-2026/tree/main/final/Web/NativeNote",
-      "type": "StaticAttachment",
-      "warnings": [
-        "no player attachment files were present"
-      ],
-      "manifest": "final/Jeopardy/Web/nativenote/challenge.yaml"
+      "type": "DynamicContainer",
+      "warnings": [],
+      "manifest": "final/Jeopardy/Web/nativenote-rsctf-dynamic/challenge.yaml"
     },
     {
       "name": "Failure",
