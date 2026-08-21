@@ -9,7 +9,6 @@ description: >-
   Can you get the admin's flag?
 
 
-  URL: https://{{ .host }}
 type: StaticAttachment
 category: Web
 difficulty: 5

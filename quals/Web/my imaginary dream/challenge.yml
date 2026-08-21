@@ -8,7 +8,6 @@ description: |
 
   An admin bot also interacts with the service. Somewhere in that workflow is enough to recover protected data.
 
-  URL: https://{{ .host }}
 
 type: "StaticAttachment"
 value: 1000
