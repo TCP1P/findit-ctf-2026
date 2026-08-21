@@ -5,8 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - ./flag.txt:/flag:ro
+    environment:
+      RSCTF_FLAG: ${RSCTF_FLAG:?RSCTF_FLAG must be set}
     restart: unless-stopped
     networks:
       internal:

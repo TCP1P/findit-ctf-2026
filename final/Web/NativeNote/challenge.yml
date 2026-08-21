@@ -9,8 +9,13 @@ description: >-
   Can you get the admin's flag?
 
 
-type: StaticAttachment
+type: DynamicContainer
 category: Web
 difficulty: 5
-flags:
-- FINDIT{3l3ctr0n_pr0t0_p0llut10n_n4t1v3_sp4wn}
+flagTemplate: FINDIT{nativenote_3l3ctr0n_pr0t0_p0llut10n_[TEAM_HASH]}
+container:
+  memoryLimit: 1024
+  storageLimit: 512
+  cpuCount: 1
+  exposePort: 8080
+  enableTrafficCapture: true
