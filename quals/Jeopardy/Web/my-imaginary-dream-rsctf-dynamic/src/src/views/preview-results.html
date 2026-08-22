@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview Results</title>
+    {{ template "theme-css" . }}
+</head>
+<body>
+    <main class="page-shell">
+        <section class="panel panel-pad">
+            {{ template "theme-brand" . }}
+            <p class="kicker">Preview Results</p>
+            <h1 class="page-title">Formatting preview.</h1>
+            <p class="query-chip">Query: {{ .Query }}</p>
+            <div class="link-grid">
+                <a class="ghost-button" href="/notes">Back to Notes</a>
+                <a class="ghost-button" href="/">Back to Home</a>
+            </div>
+        </section>
+
+        <section class="panel panel-pad">
+            <p class="section-kicker">Matches</p>
+            <h2 class="section-title">Rendered note previews</h2>
+            {{ if .Notes }}
+            <ul class="note-list">
+                {{ range .Notes }}
+                <li class="note-item">
+                    <div class="note-item__content">
+                        <p class="note-eyebrow">Note #{{ .ID }}</p>
+                        <div class="note-preview">{{ .Preview }}</div>
+                    </div>
+                    <div class="note-item__actions">
+                        <a class="ghost-button" href="/note/{{ .ID }}">Open</a>
+                    </div>
+                </li>
+                {{ end }}
+            </ul>
+            {{ else }}
+            <p class="empty-state">No notes matched your search.</p>
+            {{ end }}
+        </section>
+    </main>
+</body>
+</html>

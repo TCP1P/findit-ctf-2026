@@ -12,9 +12,15 @@
       "category": "Crypto",
       "source": "final/Crypto/azazazazazaz/challenge.yml",
       "sourceUrl": "https://github.com/TCP1P/findit-ctf-2026/tree/main/final/Crypto/azazazazazaz",
-      "type": "StaticAttachment",
-      "warnings": [],
-      "manifest": "final/Jeopardy/Crypto/azazazazazaz/challenge.yaml"
+      "type": "DynamicContainer",
+      "runtimeReason": null,
+      "warnings": [
+        "portable single-service Docker runtime promoted from 'StaticAttachment' to DynamicContainer",
+        "generated per-team flag template 'FindItCTF{azazazazazaz______________________________________________________[TEAM_HASH]}'",
+        "dynamic flag delivery proven through archived full flag literal",
+        "dynamic runtime compatibility rewrote 1 archived flag occurrence(s)"
+      ],
+      "manifest": "final/Jeopardy/Crypto/azazazazazaz-rsctf-dynamic/challenge.yaml"
     },
     {
       "name": "No Malware This Time",
@@ -22,6 +28,7 @@
       "source": "final/Forensics/no-malware-this-time/challenge.yml",
       "sourceUrl": "https://github.com/TCP1P/findit-ctf-2026/tree/main/final/Forensics/no-malware-this-time",
       "type": "StaticAttachment",
+      "runtimeReason": "Docker context exceeds the portable size/file limits or contains a symlink",
       "warnings": [],
       "manifest": "final/Jeopardy/Forensics/no-malware-this-time/challenge.yaml"
     },
@@ -30,24 +37,30 @@
       "category": "Pwn",
       "source": "final/Pwn/kopi-naught-file/challenge.yml",
       "sourceUrl": "https://github.com/TCP1P/findit-ctf-2026/tree/main/final/Pwn/kopi-naught-file",
-      "type": "StaticAttachment",
+      "type": "DynamicContainer",
+      "runtimeReason": null,
       "warnings": [
-        "container package was not safely portable; imported as an archived attachment",
-        "no player attachment files were present"
+        "portable single-service Docker runtime promoted from 'StaticContainer' to DynamicContainer",
+        "generated per-team flag template 'FindITCTF{kopi_naught_file________________________________________[TEAM_HASH]}'",
+        "dynamic flag delivery proven through archived full flag literal",
+        "dynamic runtime compatibility rewrote 1 archived flag occurrence(s)"
       ],
-      "manifest": "final/Jeopardy/Pwn/kopi-naught-file/challenge.yaml"
+      "manifest": "final/Jeopardy/Pwn/kopi-naught-file-rsctf-dynamic/challenge.yaml"
     },
     {
       "name": "Tower of Babel",
       "category": "Pwn",
       "source": "final/Pwn/tower-of-babel/challenge.yml",
       "sourceUrl": "https://github.com/TCP1P/findit-ctf-2026/tree/main/final/Pwn/tower-of-babel",
-      "type": "StaticAttachment",
+      "type": "DynamicContainer",
+      "runtimeReason": null,
       "warnings": [
-        "container package was not safely portable; imported as an archived attachment",
-        "attachment archive exceeds RSCTF's per-file limit"
+        "portable single-service Docker runtime promoted from 'StaticContainer' to DynamicContainer",
+        "generated per-team flag template 'FindITCTF{tower_of_babel_[TEAM_HASH]}'",
+        "dynamic flag delivery proven through archived wrapped-flag payload",
+        "dynamic runtime compatibility rewrote 1 archived flag occurrence(s)"
       ],
-      "manifest": "final/Jeopardy/Pwn/tower-of-babel/challenge.yaml"
+      "manifest": "final/Jeopardy/Pwn/tower-of-babel-rsctf-dynamic/challenge.yaml"
     },
     {
       "name": "Extended Notes",
@@ -55,6 +68,7 @@
       "source": "final/Reverse/Extended Notes/challenge.yml",
       "sourceUrl": "https://github.com/TCP1P/findit-ctf-2026/tree/main/final/Reverse/Extended%20Notes",
       "type": "StaticAttachment",
+      "runtimeReason": "Docker context exceeds the portable size/file limits or contains a symlink",
       "warnings": [],
       "manifest": "final/Jeopardy/Reverse/extended-notes/challenge.yaml"
     },
@@ -64,6 +78,7 @@
       "source": "final/Web/NativeNote/challenge.yml",
       "sourceUrl": "https://github.com/TCP1P/findit-ctf-2026/tree/main/final/Web/NativeNote",
       "type": "DynamicContainer",
+      "runtimeReason": null,
       "warnings": [],
       "manifest": "final/Jeopardy/Web/nativenote-rsctf-dynamic/challenge.yaml"
     },
@@ -72,9 +87,15 @@
       "category": "Crypto",
       "source": "quals/Crypto/Failure/challenge.yml",
       "sourceUrl": "https://github.com/TCP1P/findit-ctf-2026/tree/main/quals/Crypto/Failure",
-      "type": "StaticAttachment",
-      "warnings": [],
-      "manifest": "quals/Jeopardy/Crypto/failure/challenge.yaml"
+      "type": "DynamicContainer",
+      "runtimeReason": null,
+      "warnings": [
+        "portable single-service Docker runtime promoted from 'StaticAttachment' to DynamicContainer",
+        "generated per-team flag template 'FindITCTF{failure____________________[TEAM_HASH]}'",
+        "dynamic flag delivery proven through archived full flag literal",
+        "dynamic runtime compatibility rewrote 1 archived flag occurrence(s)"
+      ],
+      "manifest": "quals/Jeopardy/Crypto/failure-rsctf-dynamic/challenge.yaml"
     },
     {
       "name": "weird stealer",
@@ -82,7 +103,10 @@
       "source": "quals/Forensics/weird-stealer/challenge.yml",
       "sourceUrl": "https://github.com/TCP1P/findit-ctf-2026/tree/main/quals/Forensics/weird-stealer",
       "type": "StaticAttachment",
-      "warnings": [],
+      "runtimeReason": "Docker context exceeds the portable size/file limits or contains a symlink",
+      "warnings": [
+        "attachment omitted to stay below the repository size limit"
+      ],
       "manifest": "quals/Jeopardy/Forensics/weird-stealer/challenge.yaml"
     },
     {
@@ -91,7 +115,10 @@
       "source": "quals/Reverse/unoriginal/challenge.yml",
       "sourceUrl": "https://github.com/TCP1P/findit-ctf-2026/tree/main/quals/Reverse/unoriginal",
       "type": "StaticAttachment",
-      "warnings": [],
+      "runtimeReason": "Docker context exceeds the portable size/file limits or contains a symlink",
+      "warnings": [
+        "attachment omitted to stay below the repository size limit"
+      ],
       "manifest": "quals/Jeopardy/Reverse/unoriginal/challenge.yaml"
     },
     {
@@ -99,9 +126,15 @@
       "category": "Web",
       "source": "quals/Web/my imaginary dream/challenge.yml",
       "sourceUrl": "https://github.com/TCP1P/findit-ctf-2026/tree/main/quals/Web/my%20imaginary%20dream",
-      "type": "StaticAttachment",
-      "warnings": [],
-      "manifest": "quals/Jeopardy/Web/my-imaginary-dream/challenge.yaml"
+      "type": "DynamicContainer",
+      "runtimeReason": null,
+      "warnings": [
+        "portable single-service Docker runtime promoted from 'StaticAttachment' to DynamicContainer",
+        "generated per-team flag template 'FINDIT{my_imaginary_dream_[TEAM_HASH]}'",
+        "dynamic flag delivery uses the admin bot seed environment adapter",
+        "dynamic runtime compatibility rewrote 0 archived flag occurrence(s)"
+      ],
+      "manifest": "quals/Jeopardy/Web/my-imaginary-dream-rsctf-dynamic/challenge.yaml"
     }
   ]
 }

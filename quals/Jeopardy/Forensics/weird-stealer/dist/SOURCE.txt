@@ -1,0 +1,5 @@
+weird stealer
+
+Original source: https://github.com/TCP1P/findit-ctf-2026/tree/main/quals/Forensics/weird-stealer
+
+Local archive note: attachment omitted to stay below the repository size limit.

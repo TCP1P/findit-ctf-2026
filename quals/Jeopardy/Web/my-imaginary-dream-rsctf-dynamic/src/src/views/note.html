@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note</title>
+    {{ .HeadMetas }}
+    {{ template "theme-css" . }}
+</head>
+<body>
+    <main class="page-shell">
+        <section class="panel panel-pad">
+            {{ template "theme-brand" . }}
+            <p class="kicker">Note</p>
+            <h1 class="page-title">View note.</h1>
+            <p class="lede">Read the full content of the selected note.</p>
+            <article class="note-detail">{{ .Note.Content }}</article>
+            <div class="link-grid">
+                <a class="ghost-button" href="/notes">Back to Notes</a>
+                <a class="ghost-button" href="/">Back to Home</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

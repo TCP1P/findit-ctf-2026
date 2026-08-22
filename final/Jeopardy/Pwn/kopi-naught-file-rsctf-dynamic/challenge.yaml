@@ -1,0 +1,21 @@
+name: Kopi Naught File
+author: m3rr
+description: 'copy fail ??<br>
+
+  more like "Kopi Naught File" HahAhAhhAhh ... get it ? ( pliss laugh .·°՞(っ-ᯅ-ς)՞°·. )
+
+
+  ---
+
+  Historical archive converted for RSCTF practice. Original service endpoints may no longer be online. [Review the source challenge](https://github.com/TCP1P/findit-ctf-2026/tree/main/final/Pwn/kopi-naught-file).'
+type: DynamicContainer
+category: Pwn
+minScoreRate: 0.25
+difficulty: 5.0
+disableBloodBonus: false
+flagTemplate: FindITCTF{kopi_naught_file________________________________________[TEAM_HASH]}
+container:
+  memoryLimit: 1024
+  cpuCount: 4
+  exposePort: 31431
+  enableTrafficCapture: false

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    {{ template "theme-css" . }}
+</head>
+<body>
+    <main class="auth-shell">
+        <div class="login-bg-video" aria-hidden="true">
+            <iframe id="register-bg-video-frame" width="560" height="315" src="https://www.youtube.com/embed/hKU14_TA1N0?si=NI6dT4RVC1WPs-rE&autoplay=1&loop=1&playlist=hKU14_TA1N0&enablejsapi=1&controls=0&modestbranding=1&rel=0&mute=1&playsinline=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <section class="panel auth-card">
+            {{ template "theme-brand" . }}
+            <p class="kicker">Register</p>
+            <h1 class="page-title">Create a new account.</h1>
+            <p class="lede">Choose a username and password to start saving notes.</p>
+
+            <form class="stack" action="/register" method="post">
+                <div class="field">
+                    <label for="username">Username</label>
+                    <input class="text-input" type="text" id="username" name="username" autocomplete="username" required>
+                </div>
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input class="text-input" type="password" id="password" name="password" autocomplete="new-password" required>
+                </div>
+                <button class="primary-button" type="submit">Register</button>
+                <div class="button-row">
+                    <a class="ghost-button" href="/login">Back to Login</a>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
